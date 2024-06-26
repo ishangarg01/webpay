@@ -1,5 +1,7 @@
 
-## Build a basic version of PayTM
+## understand transactions
+
+my aim is learn transactions and how various security features, edge cases are handled in transaction apps.
 
 ![image](https://github.com/ishangarg01/webpay/assets/95160859/328f3e05-d052-4edc-b756-ff873e605a91)
 
