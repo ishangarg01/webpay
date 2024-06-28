@@ -2,15 +2,18 @@ import { useEffect, useState } from "react"
 import { Button } from "./Button"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { useDebouncer } from "../hooks/useDebouncer";
 
 export const Users = () => {
     // Replace with backend call
     const [users, setUsers] = useState([]);
     const [filter, setFilter] = useState("");
+    
+    const debouncedFilter = useDebouncer(filter, 800);
+
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + filter, {
+        axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + debouncedFilter, {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token")
                 }
@@ -19,8 +22,10 @@ export const Users = () => {
                 setUsers(response.data.users)
             })
             
-    }, [filter])
-    const filtered = users.filter(user => user.firstName !== 'Ishan');
+    }, [debouncedFilter])
+
+
+
     return <>
         <div className="font-bold mt-6 text-lg">
             Users
@@ -32,7 +37,7 @@ export const Users = () => {
         </div>
         <div>
             
-            {filtered.map(user => <User user={user} />)}
+            {users.map(user => <User user={user} />)}
         </div>
     </>
 }
