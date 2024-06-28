@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-export function useDebouncer(filter, time) {
+export const useDebouncer = (filter, time) => {
     const [debouncedFilter, setDebouncedFilter] = useState(filter);
     useEffect(() => {
         const previousTimeout = setTimeout(() => {
