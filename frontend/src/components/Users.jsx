@@ -20,7 +20,7 @@ export const Users = () => {
             })
             
     }, [filter])
-
+    const filtered = users.filter(user => user.firstName !== 'Ishan');
     return <>
         <div className="font-bold mt-6 text-lg">
             Users
@@ -32,7 +32,7 @@ export const Users = () => {
         </div>
         <div>
             
-            {users.map(user => <User user={user} />)}
+            {filtered.map(user => <User user={user} />)}
         </div>
     </>
 }
